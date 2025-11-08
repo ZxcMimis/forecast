@@ -1,0 +1,89 @@
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 10px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.logo-box {
+    border: 2px solid #ffcc00;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    font-family: sans-serif;
+}
+
+
+
+.main-nav {
+    margin-right: auto;
+    margin-left: 50px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin-right: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #444;
+    font-size: 1em;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sign-up-button {
+    background-color: #ffb86c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.sign-up-button:hover {
+    background-color: #fca548;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #5d7494;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #5d7494;
+}
