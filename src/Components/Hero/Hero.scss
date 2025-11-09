@@ -1,0 +1,131 @@
+$image-path: '../../img/hero.webp';
+$accent-color: #ff9933;
+$input-bg-color: #e5e5e5;
+$border-color: #000000;
+
+.hero {
+    background-image: url($image-path);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 500px;
+    padding: 100px 20px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+
+    &__title {
+        color: rgba(255, 255, 255, 1);
+        font-family: Montserrat;
+        font-size: 40px;
+        font-weight: 600;
+        line-height: 49px;
+        letter-spacing: 0%;
+        text-align: left;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 80px;
+        margin-bottom: 137px;
+    }
+
+    &__context {
+        color: rgba(255, 255, 255, 1);
+        font-family: Montserrat;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 29px;
+        text-align: right;
+        width: 345px;
+        height: 87px;
+    }
+
+
+
+    &__divider {
+        width: 3px;
+        height: 150px;
+        background-color: white;
+        margin: 0 50px;
+
+    }
+
+    &__date-one {
+        font-family: Montserrat;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 29px;
+        letter-spacing: 0%;
+        text-align: left;
+        width: 164px;
+
+    }
+
+    &__date-two {
+        font-family: Montserrat;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 29px;
+        letter-spacing: 0%;
+        text-align: left;
+        width: 164px;
+
+    }
+
+
+    &__search-container {
+        display: flex;
+        width: 100%;
+        max-width: 450px;
+        background-color: transparent;
+        border-radius: 5px;
+        overflow: hidden;
+        height: 50px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border: 1px solid $border-color;
+    }
+
+    &__search-input {
+        flex-grow: 1;
+        border: none;
+        padding: 0 15px;
+        font-size: 1rem;
+        color: #333;
+        background-color: $input-bg-color;
+        border-right: 1px solid $border-color;
+
+        &::placeholder {
+            color: #777;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__search-button {
+        background-color: $accent-color;
+        border: none;
+        color: white;
+        padding: 0 15px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+
+    }
+
+    &__search-icon {
+        width: 25px;
+        height: 25px;
+        fill: black;
+    }
+}
