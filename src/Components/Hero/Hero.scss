@@ -18,6 +18,7 @@ $border-color: #000000;
     align-items: center;
     justify-content: center;
     font-family: sans-serif;
+    
 
     &__title {
         color: rgba(255, 255, 255, 1);
@@ -32,7 +33,6 @@ $border-color: #000000;
     &__content {
         display: flex;
         align-items: center;
-        justify-content: center;
         margin-top: 80px;
         margin-bottom: 137px;
     }
@@ -94,9 +94,10 @@ $border-color: #000000;
     }
 
     &__search-input {
+        height: 42px;
         flex-grow: 1;
         border: none;
-        padding: 0 15px;
+        padding: 0 13px;
         font-size: 1rem;
         color: #333;
         background-color: $input-bg-color;
@@ -112,20 +113,20 @@ $border-color: #000000;
     }
 
     &__search-button {
-        background-color: $accent-color;
-        border: none;
-        color: white;
         padding: 0 15px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: background-color 0.3s;
-
-
+        box-sizing: border-box;
+        border-left:  solid rgba(0, 0, 0, 1);
+        border-radius: 0px 10px 10px 0px;
+        background: rgba(255, 179, 108, 1);
+        width: 45px;
+        height: 42px;
+        padding: 9px 10px;
     }
 
     &__search-icon {
         width: 25px;
         height: 25px;
         fill: black;
+
     }
 }

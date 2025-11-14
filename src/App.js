@@ -5,6 +5,7 @@ import { Gallery } from './Components/Gallery/Gallery';
 import { Header } from './Components/Header/Header.jsx';
 import { Hero } from './Components/Hero/Hero';
 import { Weather } from './Components/Weather/Weather';
+import './Components/reset/reset.scss'
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     <div className="App">
       <Header />
       <Hero />
-      {/* <Weather /> */}
+      <Weather />
       {/* <Articles /> */}
       {/* <Gallery /> */}
       {/* <Footer /> */}
