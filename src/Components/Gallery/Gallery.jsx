@@ -10,22 +10,22 @@ export const Gallery = () => {
     return (
         <section className='gallery'>
             <Container>
-                <h1>Beautiful nature</h1>
+                <h1 className='gallery__title'>Beautiful nature</h1>
                 <ul className='gallery__list'>
-                    <li className="gallery__item">
-                        <img src={sliderThree} alt="#" className="gallery__slider" />
-                    </li>
-                    <li className="gallery__item">
-                        <img src={sliderTwo} alt="#" className="gallery__slider" />
-                    </li>
-                    <li className="gallery__item">
-                        <img src={sliderOne} alt="#" className="gallery__slider" />
-                    </li>
                     <li className="gallery__item">
                         <img src={sliderFour} alt="#" className="gallery__slider" />
                     </li>
                     <li className="gallery__item">
                         <img src={sliderFive} alt="#" className="gallery__slider" />
+                    </li>
+                    <li className="gallery__item">
+                        <img src={sliderOne} alt="#" className="gallery__slider" />
+                    </li>
+                    <li className="gallery__item">
+                        <img src={sliderTwo} alt="#" className="gallery__slider" />
+                    </li>
+                    <li className="gallery__item">
+                        <img src= {sliderThree} alt="#" className="gallery__slider" />
                     </li>
                 </ul>
             </Container>
