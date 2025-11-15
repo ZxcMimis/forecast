@@ -16,7 +16,7 @@ function App() {
       <Weather />
       <Articles />
       <Gallery />
-      {/* <Footer /> */}
+      <Footer />
 
     </div>
   );

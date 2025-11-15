@@ -1,0 +1,77 @@
+.footer {
+    width: 100%;
+    height: 179px;
+    background: rgba(255, 179, 108, 1);
+
+    &__box {
+        display: flex;
+        justify-content: left;
+        gap: 100px;
+        padding-top: 40px;
+    }
+
+    &__link-box {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+    }
+
+    &__logo-img {
+        width: 90px;
+        height: 62px;
+    }
+
+    &__link-title {
+        text-align: left;
+    }
+
+    &__addressa-box {
+        text-align: left;
+    }
+
+    &__social-icons {
+        display: flex;
+        gap: 15px;
+    }
+
+    &__addressa-title {
+        text-align: left;
+        margin-bottom: 10px;
+
+        color: rgba(0, 0, 0, 1);
+        font-family: Montserrat Alternates;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0%;
+    }
+
+    &__addressa-subtitle {
+        color: rgba(0, 0, 0, 1);
+
+        font-family: Montserrat Alternates;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 15px;
+        letter-spacing: 0%;
+        text-align: left;
+    }
+
+    &__link-title {
+        text-align: left;
+        margin-bottom: 10px;
+
+        color: rgba(0, 0, 0, 1);
+
+        font-family: Montserrat Alternates;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0%;
+
+    }
+
+
+
+
+}
