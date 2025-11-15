@@ -7,8 +7,6 @@ $border-color: #000000;
     background-image: url($image-path);
     background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.5);
     min-height: 500px;
     padding: 100px 20px;
     color: white;
@@ -17,7 +15,6 @@ $border-color: #000000;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: sans-serif;
     
 
     &__title {
@@ -27,7 +24,7 @@ $border-color: #000000;
         font-weight: 600;
         line-height: 49px;
         letter-spacing: 0%;
-        text-align: left;
+        text-align: center;
     }
 
     &__content {
@@ -35,6 +32,7 @@ $border-color: #000000;
         align-items: center;
         margin-top: 80px;
         margin-bottom: 137px;
+        justify-content: center;
     }
 
     &__context {
@@ -83,14 +81,13 @@ $border-color: #000000;
 
     &__search-container {
         display: flex;
-        width: 100%;
-        max-width: 450px;
+        max-width: 625px;
         background-color: transparent;
         border-radius: 5px;
         overflow: hidden;
         height: 50px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        border: 1px solid $border-color;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     &__search-input {
@@ -102,6 +99,7 @@ $border-color: #000000;
         color: #333;
         background-color: $input-bg-color;
         border-right: 1px solid $border-color;
+ 
 
         &::placeholder {
             color: #777;

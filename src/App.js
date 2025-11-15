@@ -14,8 +14,8 @@ function App() {
       <Header />
       <Hero />
       <Weather />
-      {/* <Articles /> */}
-      {/* <Gallery /> */}
+      <Articles />
+      <Gallery />
       {/* <Footer /> */}
 
     </div>

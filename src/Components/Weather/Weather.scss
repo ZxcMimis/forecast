@@ -6,6 +6,11 @@
     gap: 25px;
 }
 
+.weather__list{
+    display: flex;
+    gap: 90px;
+}
+
 .weather__card {
     background-color: #f0f0f0;
     border-radius: 20px;

@@ -1,0 +1,75 @@
+.articles {
+
+    padding-bottom: 80px;
+
+    &__title {
+        color: rgba(0, 0, 0, 1);
+        font-family: Montserrat;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0%;
+        text-align: left;
+        margin-left: 27px;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 20px;
+        margin: 40px 0px;
+
+    }
+
+    &__item {
+        width: 270px;
+
+    }
+
+    &__img {
+        height: 208px;
+
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    &__info {
+        color: rgba(0, 0, 0, 1);
+
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0%;
+        text-align: left;
+    }
+
+    &__btn {
+        width: 138px;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10;
+        padding: 10px 30px 10px 30px;
+
+        border-radius: 10px;
+        background: rgba(255, 179, 108, 1);
+
+        color: rgba(0, 0, 0, 1);
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0%;
+        text-align: left;
+        margin-left: 27px;
+    }
+
+}
