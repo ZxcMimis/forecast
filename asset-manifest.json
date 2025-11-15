@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ab402141.css",
+    "main.js": "/static/js/main.a34c28f8.js",
+    "static/media/hero.webp": "/static/media/hero.dc6bed33860e969ac813.webp",
+    "static/media/search.svg": "/static/media/search.d6b2210006084e689485933e55ccbb7f.svg",
+    "static/media/slider-1.webp": "/static/media/slider-1.8c991c3f1141b6778ce9.webp",
+    "static/media/slider-5.jpg": "/static/media/slider-5.23df1b948f8cda004e89.jpg",
+    "static/media/three.webp": "/static/media/three.3877a605f147a27ba793.webp",
+    "static/media/two.webp": "/static/media/two.ec71c6d19ac7e0286adb.webp",
+    "static/media/four.webp": "/static/media/four.a78300ee735d0c59926e.webp",
+    "static/media/slider-4.webp": "/static/media/slider-4.d313bc7a319da5dfc7f8.webp",
+    "static/media/sub.webp": "/static/media/sub.f8a20dd2432e7e3b0115.webp",
+    "static/media/slider-2.webp": "/static/media/slider-2.132aa16da7eaf3dcc2d2.webp",
+    "static/media/one.webp": "/static/media/one.ef40d6d20e2778e26091.webp",
+    "static/media/slider-3.webp": "/static/media/slider-3.57e170532f1322210748.webp",
+    "index.html": "/index.html",
+    "static/media/insta.webp": "/static/media/insta.a9ea9152db5e279ffa24.webp",
+    "static/media/whatsapp.webp": "/static/media/whatsapp.266f70424cdb6c9b5919.webp",
+    "static/media/facebook.webp": "/static/media/facebook.48302027f51811327d06.webp",
+    "main.ab402141.css.map": "/static/css/main.ab402141.css.map",
+    "main.a34c28f8.js.map": "/static/js/main.a34c28f8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ab402141.css",
+    "static/js/main.a34c28f8.js"
+  ]
+}
