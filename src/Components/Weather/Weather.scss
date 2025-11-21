@@ -6,8 +6,9 @@
     gap: 25px;
 }
 
-.weather__list{
+.weather__list {
     display: flex;
+    justify-content: center;
     gap: 90px;
 }
 
@@ -138,4 +139,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+@media screen and (max-width: 800px) {
+    .weather {
+
+        &__last {
+            display: none;
+        }
+
+
+
+
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .weather {
+
+        &__last {
+            display: none;
+        }
+
+        &__second {
+            display: none;
+        }
+
+
+    }
 }

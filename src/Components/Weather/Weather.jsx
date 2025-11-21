@@ -7,7 +7,7 @@ export const Weather = () => {
         
         <section className="weather">
     <Container>
-        <ul className="weather__list">
+        <ul className="weather__list weather__first">
             <li className="weather__card">
                 <div className="weather__header">
                     <span className="weather__city">Prague</span>
@@ -39,7 +39,7 @@ export const Weather = () => {
                 </div>
             </li>
 
-            <li className="weather__card">
+            <li className="weather__card weather__second">
                 <div className="weather__header">
                     <span className="weather__city">Prague</span>
                     <span className="weather__country">Czech Republic</span>
@@ -63,7 +63,7 @@ export const Weather = () => {
                 </div>
             </li>
 
-            <li className="weather__card">
+            <li className="weather__card weather__last">
                 <div className="weather__header">
                     <span className="weather__city">Prague</span>
                     <span className="weather__country">Czech Republic</span>
