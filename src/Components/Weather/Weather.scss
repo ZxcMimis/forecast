@@ -141,6 +141,16 @@
     align-items: center;
 }
 
+@media screen and (max-width: 1200px) {
+    .weather {
+
+
+        &__card{
+            width: 320px;
+        }
+    }
+}
+
 
 @media screen and (max-width: 800px) {
     .weather {

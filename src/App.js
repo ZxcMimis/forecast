@@ -14,9 +14,9 @@ function App() {
       <Header />
       <Hero />
       <Weather />
-      {/* <Articles /> */}
-      {/* <Gallery /> */}
-      {/* <Footer /> */}
+      <Articles />
+      <Gallery />
+      <Footer />
 
     </div>
   );
