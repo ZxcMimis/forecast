@@ -58,7 +58,7 @@ export const Header = () => {
                             getContainer={false}
                         >
                             <ul className='header__menu-list'>
-                                <li className="header__menu-item"><a href="#" className="header__menu-link">Who we are</a></li>
+                                <li className="header__menu-item"><a href="src/Components/Header/Header.jsx" className="header__menu-link">Who we are</a></li>
                                 <li className="header__menu-item"><a href="#" className="header__menu-link">Contacts</a></li>
                                 <li className="header__menu-item"><a href="#" className="header__menu-link">Menu</a></li>
                             </ul>
