@@ -95,6 +95,11 @@
             letter-spacing: 0%;
             text-align: left;
         }
+
+        &__drawer-content{
+            display: flex;
+            justify-content: space-between;
+        }
     }
 }
 
@@ -104,8 +109,6 @@
     .ant-modal-content {
         border-radius: 20px;
         padding: 30px;
-        width: 530px;
-        height: 534px;
     }
 }
 
@@ -138,7 +141,6 @@
 }
 
 .header__modal-input {
-    width: 440px;
     padding: 12px 15px;
     border-radius: 10px;
     border: none;
