@@ -59,50 +59,7 @@ export const Header = () => {
         }
     };
 
-    // Компонент юзера для Дровера (Мобильная версия)
-    const DrawerUserSection = () => {
-        if (isLoggedIn && currentUser) {
-            return (
-                <div className="header__user menu">
-                    <img src={userImg} alt="User" className="header__user-avatar-img" />
-                    <span className="header__user-name">{currentUser.username}</span>
-                    <span onClick={handleLogout} className="header__user-logout">Log out</span>
-                </div>
-            );
-        }
-        return (
-            <div className="header__user menu">
-                <div className="header__user-avatar-placeholder">
-                     <img src={userImg} alt="User" />
-                </div>
-                <button 
-                    className="header__sign-up-button menu" 
-                    onClick={() => { onClose(); showModal(); }}
-                >
-                    Sign Up
-                </button>
-            </div>
-        );
-    };
 
-
-    const DesktopUserSection = () => {
-        if (isLoggedIn && currentUser) {
-            return (
-                <div className="header__user">
-                    <span style={{ fontWeight: 'bold', marginRight: '10px' }}>{currentUser.username}</span>
-                    <span onClick={handleLogout} style={{ fontSize: '12px', color: '#ff4d4f', cursor: 'pointer', textDecoration: 'underline' }}>Log out</span>
-                    <img src={userImg} alt="User" />
-                </div>
-            );
-        }
-        return (
-            <div className="header__user">
-                <button className="header__sign-up-button" onClick={showModal}>Sign Up</button>
-                <img src={userImg} alt="User" />
-            </div>
-        );
-    };
 
     return (
         <header className="header">
@@ -120,7 +77,6 @@ export const Header = () => {
                         </ul>
                     </nav>
 
-                    <DesktopUserSection />
 
                     <div className='header__menu-box'>
                         <Button type="text" onClick={showDrawer} style={{ fontSize: '16px', fontWeight: '500' }}>
