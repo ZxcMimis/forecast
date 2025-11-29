@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Weather.scss';
 import { Container } from '../Container/Container';
+import delet from '../../img/delete.svg'
+import heart from '../../img/heart.svg'
+import refresh from '../../img/refresh.svg'
 
 export const Weather = () => {
     const [weatherData, setWeatherData] = useState([]);
-
-    const API_KEY = 'de23728e3ff5679e965e8d6066a30a47'; 
+    const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
 
     const locations = [
         { lat: 50.0755, lon: 14.4378 },
@@ -29,7 +31,6 @@ export const Weather = () => {
                     if (res.ok) {
                         return data;
                     } else {
-                        console.error(data.message);
                         return null;
                     }
                 });
@@ -86,7 +87,21 @@ export const Weather = () => {
                             <div className="weather__temp">{Math.round(data.main.temp)}°C</div>
                             
                             <div className="weather__footer">
+                                <div className="weather__footer-actions">
+                                    <svg className="weather__footer-icon weather__icon-refresh">
+                                        <use href={refresh}></use>
+                                    </svg>
+                                    
+                                    <svg className="weather__footer-icon weather__icon-like">
+                                       <use href={heart}></use>
+                                    </svg>
+                                </div>
+
                                 <button className="weather__btn">See more</button>
+
+                                <svg className="weather__footer-icon weather__icon-trash">
+                                    <use href={delet}></use>
+                                </svg>
                             </div>
                         </li>
                     ))}

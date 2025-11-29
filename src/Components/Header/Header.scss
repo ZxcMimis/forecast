@@ -85,25 +85,8 @@
         &__menu-box {
             display: block;
         }
-
-        &__menu-link {
-            color: rgba(0, 0, 0, 1);
-            font-family: Montserrat Alternates;
-            font-size: 10px;
-            font-weight: 500;
-            line-height: 12px;
-            letter-spacing: 0%;
-            text-align: left;
-        }
-
-        &__drawer-content{
-            display: flex;
-            justify-content: space-between;
-        }
     }
 }
-
-
 
 .header__modal {
     .ant-modal-content {
@@ -182,12 +165,102 @@
     text-align: center;
     font-size: 12px;
     margin-top: 10px;
-
-
 }
 
 .header__modal-footer-a {
     color: #000;
     font-weight: bold;
     text-decoration: underline;
+}
+
+.header__drawer {
+    .ant-drawer-body {
+        background: linear-gradient(180deg, #ffffff 0%, #e6e6e6 100%);
+        padding: 40px 24px;
+    }
+
+    .header__drawer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 100%;
+        padding-top: 20px;
+    }
+
+    .header__menu-list.menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        .header__menu-link {
+            font-size: 20px;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            font-family: Montserrat Alternates, sans-serif;
+            
+            &:hover {
+                color: #ffb86c;
+            }
+        }
+    }
+
+    .header__user.menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+
+        .header__user-avatar-placeholder {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #5d6d8a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+
+
+        }
+        
+        .header__user-avatar-img {
+           width: 70px;
+           height: 70px;
+           border-radius: 50%;
+           object-fit: cover;
+        }
+
+        .header__sign-up-button.menu {
+            background-color: #ffb86c;
+            color: #000;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            
+            &:hover {
+                background-color: darken(#ffb86c, 5%);
+            }
+        }
+        
+        .header__user-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .header__user-logout {
+            font-size: 14px;
+            color: #ff4d4f;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
 }

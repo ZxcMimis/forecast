@@ -73,10 +73,10 @@ export const Header = () => {
         return (
             <div className="header__user menu">
                 <div className="header__user-avatar-placeholder">
-                     <img src={userImg} alt="User" />
+                    <img src={userImg} alt="User" />
                 </div>
-                <button 
-                    className="header__sign-up-button menu" 
+                <button
+                    className="header__sign-up-button menu"
                     onClick={() => { onClose(); showModal(); }}
                 >
                     Sign Up
@@ -122,11 +122,11 @@ export const Header = () => {
 
                     <DesktopUserSection />
 
-                    <div className='header__menu-box'>
+<div className='header__menu-box'>
                         <Button type="text" onClick={showDrawer} style={{ fontSize: '16px', fontWeight: '500' }}>
                             Menu {open ? 'v' : '>'}
                         </Button>
-                        
+
                         <Drawer
                             placement="top"
                             closable={true}
@@ -135,15 +135,17 @@ export const Header = () => {
                             open={open}
                             height="auto"
                             className="header__drawer"
-                        >
-                            
+                        > 
+
                             <div className="header__drawer-content">
                                 <ul className='header__menu-list menu'>
                                     <li className="header__menu-item"><a href="#" className="header__menu-link">Who we are</a></li>
                                     <li className="header__menu-item"><a href="#" className="header__menu-link">Contacts</a></li>
                                     <li className="header__menu-item"><a href="#" className="header__menu-link">Menu</a></li>
                                 </ul>
-                                
+
+
+                                <DrawerUserSection /> 
 
                             </div>
                         </Drawer>
@@ -151,13 +153,13 @@ export const Header = () => {
                 </div>
             </Container>
 
-            <Modal 
-                open={isModalOpen} 
-                onCancel={handleCancel} 
+            <Modal
+                open={isModalOpen}
+                onCancel={handleCancel}
                 footer={null}
                 centered
                 width={450}
-                className="header__modal" 
+                className="header__modal"
             >
                 <form className="header__modal-form" onSubmit={handleRegister}>
                     <h2 className="header__modal-title">Sign up</h2>
