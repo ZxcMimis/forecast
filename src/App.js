@@ -5,6 +5,7 @@ import { Gallery } from './Components/Gallery/Gallery';
 import { Header } from './Components/Header/Header.jsx';
 import { Hero } from './Components/Hero/Hero';
 import { Weather } from './Components/Weather/Weather';
+import {SeeMore} from './Components/Weather/SeeMore.jsx'
 import './Components/reset/reset.scss'
 
 
@@ -14,6 +15,7 @@ function App() {
       <Header />
       <Hero />
       <Weather />
+      <SeeMore />
       <Articles />
       <Gallery />
       <Footer />
