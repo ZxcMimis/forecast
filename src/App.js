@@ -6,6 +6,8 @@ import { Header } from './Components/Header/Header.jsx';
 import { Hero } from './Components/Hero/Hero';
 import { Weather } from './Components/Weather/Weather';
 import {SeeMore} from './Components/Weather/SeeMore.jsx'
+import { Forecast } from './Components/Weather/Forecast.jsx';
+import {Prediction} from './Components/Weather/Prediction.jsx'
 import './Components/reset/reset.scss'
 
 
@@ -16,6 +18,8 @@ function App() {
       <Hero />
       <Weather />
       <SeeMore />
+      <Forecast />
+      <Prediction/>
       <Articles />
       <Gallery />
       <Footer />
