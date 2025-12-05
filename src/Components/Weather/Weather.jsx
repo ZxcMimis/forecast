@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Weather.scss';
 import { Container } from '../Container/Container';
-import delet from '../../img/delete.svg'
-import heart from '../../img/heart.svg'
-import refresh from '../../img/refresh.svg'
+import delet from '../../img/delete.svg';
+import heart from '../../img/heart.svg';
+import refresh from '../../img/refresh.svg';
 
-export const Weather = () => {
+export const Weather = ({ onToggle, activeIndex }) => {
     const [weatherData, setWeatherData] = useState([]);
     const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
 
@@ -97,7 +97,12 @@ export const Weather = () => {
                                     </svg>
                                 </div>
 
-                                <button className="weather__btn">See more</button>
+                                <button 
+                                    className="weather__btn" 
+                                    onClick={() => onToggle(index)}
+                                >
+                                    {activeIndex === index ? 'Hide info' : 'See more'}
+                                </button>
 
                                 <svg className="weather__footer-icon weather__icon-trash">
                                     <use href={delet}></use>
