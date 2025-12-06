@@ -5,14 +5,15 @@ import delet from '../../img/delete.svg';
 import heart from '../../img/heart.svg';
 import refresh from '../../img/refresh.svg';
 
-export const Weather = ({ onToggle, activeIndex }) => {
+
+export const Weather = ({ onToggle, activeId }) => {
     const [weatherData, setWeatherData] = useState([]);
     const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
 
     const locations = [
-        { lat: 50.0755, lon: 14.4378 },
-        { lat: 50.4501, lon: 30.5234 },
-        { lat: 51.5074, lon: -0.1278 }
+        { lat: 50.0755, lon: 14.4378 }, 
+        { lat: 50.4501, lon: 30.5234 }, 
+        { lat: 51.5074, lon: -0.1278 } 
     ];
 
     const getCurrentDate = () => {
@@ -27,17 +28,11 @@ export const Weather = ({ onToggle, activeIndex }) => {
                     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${loc.lon}&appid=${API_KEY}&units=metric`;
                     const res = await fetch(url);
                     const data = await res.json();
-                    
-                    if (res.ok) {
-                        return data;
-                    } else {
-                        return null;
-                    }
+                    return res.ok ? data : null;
                 });
 
                 const results = await Promise.all(promises);
                 setWeatherData(results.filter(item => item !== null));
-                
             } catch (error) {
                 console.error(error);
             }
@@ -60,8 +55,8 @@ export const Weather = ({ onToggle, activeIndex }) => {
         <section className="weather">
             <Container>
                 <ul className="weather__list">
-                    {weatherData.map((data, index) => (
-                        <li key={data.id || index} className="weather__card">
+                    {weatherData.map((data) => (
+                        <li key={data.id} className="weather__card">
                             <div className="weather__header">
                                 <span className="weather__city">{data.name}</span>
                                 <span className="weather__country">{data.sys?.country}</span>
@@ -91,7 +86,6 @@ export const Weather = ({ onToggle, activeIndex }) => {
                                     <svg className="weather__footer-icon weather__icon-refresh">
                                         <use href={refresh}></use>
                                     </svg>
-                                    
                                     <svg className="weather__footer-icon weather__icon-like">
                                        <use href={heart}></use>
                                     </svg>
@@ -99,9 +93,11 @@ export const Weather = ({ onToggle, activeIndex }) => {
 
                                 <button 
                                     className="weather__btn" 
-                                    onClick={() => onToggle(index)}
+                                   
+                                    onClick={() => onToggle(data)}
                                 >
-                                    {activeIndex === index ? 'Hide info' : 'See more'}
+
+                                    {activeId === data.id ? 'Hide info' : 'See more'}
                                 </button>
 
                                 <svg className="weather__footer-icon weather__icon-trash">

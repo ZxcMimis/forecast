@@ -36,7 +36,9 @@ const formatYAxis = (tickItem) => {
   return `${tickItem}°C`;
 };
 
-export const Forecast = () => {
+export const Forecast = (  ) => {
+
+
     return (
         <section className="forecast">
             <Container>
