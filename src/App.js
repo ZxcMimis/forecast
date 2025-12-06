@@ -42,7 +42,7 @@ const App = () => {
         <>
           <SeeMore data={selectedWeather} />
           <Forecast data={selectedWeather} />
-          < Prediction />
+          < Prediction data={selectedWeather} />
         </>
       )}
 

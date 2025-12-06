@@ -1,99 +1,81 @@
+import React, { useState, useEffect } from 'react';
 import { Container } from '../Container/Container';
-import './Prediction.scss'
-import few from '../../img/few.webp'
-import scattered from '../../img/scattered.webp'
-import overcast from '../../img/overcast.webp'
-import sunny from '../../img/sunny.webp'
-import rain from '../../img/rain.webp'
+import './Prediction.scss';
 
+export const Prediction = ({ data }) => {
+    const [dailyForecast, setDailyForecast] = useState([]);
+    const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
 
-export const Prediction = () => {
+    useEffect(() => {
+        if (!data || !data.coord) return;
+
+        const { lat, lon } = data.coord;
+
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`)
+            .then((res) => res.json())
+            .then((result) => {
+                
+                const dailyData = {};
+
+                result.list.forEach((reading) => {
+                    const date = reading.dt_txt.split(' ')[0];
+
+                    if (!dailyData[date]) {
+                        dailyData[date] = {
+                            dt: reading.dt,
+                            min: reading.main.temp_min,
+                            max: reading.main.temp_max,
+                            icon: reading.weather[0].icon,
+                            desc: reading.weather[0].description,
+                        };
+                    } else {
+                        dailyData[date].min = Math.min(dailyData[date].min, reading.main.temp_min);
+                        dailyData[date].max = Math.max(dailyData[date].max, reading.main.temp_max);
+                        
+                        if (reading.dt_txt.includes("12:00:00")) {
+                            dailyData[date].icon = reading.weather[0].icon;
+                            dailyData[date].desc = reading.weather[0].description;
+                        }
+                    }
+                });
+
+                const formattedForecast = Object.values(dailyData).slice(0, 5);
+                setDailyForecast(formattedForecast);
+            })
+            .catch((err) => console.error(err));
+    }, [data]);
+
+    if (!data || dailyForecast.length === 0) return null;
+
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp * 1000);
+        return date.toLocaleDateString('en-GB', { weekday: 'short', month: 'short', day: 'numeric' });
+    };
+
     return (
         <section className="prediction">
             <Container>
                 <ul className="prediction__list">
-                    <li className='prediction__item'>
-                        <p className="prediction__date">Fri, Oct 13</p>
+                    {dailyForecast.map((day) => (
+                        <li key={day.dt} className='prediction__item'>
+                            <p className="prediction__date">{formatDate(day.dt)}</p>
 
-                        <div className='prediction__weather-group'>
-                            <img className='prediction__img' src={rain} alt="#" />
-                            <p className='prediction__temp'>23/14℃</p>
-                        </div>
+                            <div className='prediction__weather-group'>
+                                <img 
+                                    className='prediction__img' 
+                                    src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`} 
+                                    alt={day.desc} 
+                                />
+                                <p className='prediction__temp'>
+                                    {Math.round(day.max)}/{Math.round(day.min)}℃
+                                </p>
+                            </div>
 
-                        <p className='prediction__desc'>light rain</p>
-                    </li>
-                    <li className='prediction__item'>
-                        <p className="prediction__date">Sat, Oct 14</p>
-
-                        <div className='prediction__weather-group'>
-                            <img className='prediction__img' src={rain} alt="#" />
-                            <p className='prediction__temp'>22/10℃</p>
-                        </div>
-
-                        <p className='prediction__desc'>light rain</p>
-                    </li>
-                    <li className='prediction__item'>
-                        <p className="prediction__date">Sun, Oct 15</p>
-
-                        <div className='prediction__weather-group'>
-                            <img className='prediction__img' src={rain} alt="#" />
-                            <p className='prediction__temp'>13/6℃</p>
-                        </div>
-
-                        <p className='prediction__desc'>light rain</p>
-                    </li>
-                    <li className='prediction__item'>
-                        <p className="prediction__date">Mon, Oct 16</p>
-                        <div className='prediction__weather-group'>
-                            <img className='prediction__img' src={few} alt="#" />
-                            <p className='prediction__temp'>12/4℃</p>
-                        </div>
-
-                        <p className='prediction__desc'>few clouds</p>
-                    </li>
-                    <li className='prediction__item'>
-                        <p className="prediction__date">Tue, Oct 17</p>
-
-                        <div className='prediction__weather-group'>
-                            <img className='prediction__img' src={overcast} alt="#" />
-                            <p className='prediction__temp'>12/4℃</p>
-                        </div>
-
-                        <p className='prediction__desc'>overcast clouds</p>
-                    </li>
-                    <li className='prediction__item'>
-                        <p className="prediction__date">Wed, Oct 18</p>
-
-                        <div className='prediction__weather-group'>
-                            <img className='prediction__img' src={sunny} alt="#" />
-                            <p className='prediction__temp'>13/3℃</p>
-                        </div>
-
-                        <p className='prediction__desc'>clear sky</p>
-                    </li>
-                    <li className='prediction__item'>
-                        <p className="prediction__date">Thu, Oct 19</p>
-
-                        <div className='prediction__weather-group'>
-                            <img className='prediction__img' src={overcast} alt="#" />
-                            <p className='prediction__temp'>12/5℃</p>
-                        </div>
-
-                        <p className='prediction__desc'>overcast clouds</p>
-                    </li>
-                    <li className='prediction__item'>
-                        <p className="prediction__date">Fri, Oct 20</p>
-
-                        <div className='prediction__weather-group'>
-                            <img className='prediction__img' src={scattered} alt="#" />
-                            <p className='prediction__temp'>9/3℃</p>
-                        </div>
-
-                        <p className='prediction__desc'>scattered clouds</p>
-                    </li>
+                            <p className='prediction__desc'>{day.desc}</p>
+                        </li>
+                    ))}
                 </ul>
             </Container>
-
         </section>
-    )
-}
+    );
+};
