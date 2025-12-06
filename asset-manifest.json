@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/forecast/static/css/main.d9fbdb4f.css",
-    "main.js": "/forecast/static/js/main.30dc06fd.js",
+    "main.css": "/forecast/static/css/main.c702f96e.css",
+    "main.js": "/forecast/static/js/main.744534e9.js",
     "static/media/hero.webp": "/forecast/static/media/hero.dc6bed33860e969ac813.webp",
     "static/media/heart.svg": "/forecast/static/media/heart.fac97839fa9dfad125426c9ba8855656.svg",
     "static/media/search.svg": "/forecast/static/media/search.d6b2210006084e689485933e55ccbb7f.svg",
@@ -15,18 +15,18 @@
     "static/media/one.webp": "/forecast/static/media/one.ef40d6d20e2778e26091.webp",
     "static/media/wind.webp": "/forecast/static/media/wind.4e18e21b9fb598d55fda.webp",
     "static/media/thermometer.webp": "/forecast/static/media/thermometer.ca642ce9cc47f1cc30fd.webp",
-    "static/media/rain.webp": "/forecast/static/media/rain.9e668bdd51349fec92a7.webp",
     "static/media/Visibility.webp": "/forecast/static/media/Visibility.09f0b65011587c9a5d01.webp",
     "static/media/slider-3.webp": "/forecast/static/media/slider-3.57e170532f1322210748.webp",
+    "static/media/rain.webp": "/forecast/static/media/rain.6794718596a1a8d4391e.webp",
     "index.html": "/forecast/index.html",
     "static/media/insta.webp": "/forecast/static/media/insta.a9ea9152db5e279ffa24.webp",
     "static/media/whatsapp.webp": "/forecast/static/media/whatsapp.266f70424cdb6c9b5919.webp",
     "static/media/facebook.webp": "/forecast/static/media/facebook.48302027f51811327d06.webp",
-    "main.d9fbdb4f.css.map": "/forecast/static/css/main.d9fbdb4f.css.map",
-    "main.30dc06fd.js.map": "/forecast/static/js/main.30dc06fd.js.map"
+    "main.c702f96e.css.map": "/forecast/static/css/main.c702f96e.css.map",
+    "main.744534e9.js.map": "/forecast/static/js/main.744534e9.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9fbdb4f.css",
-    "static/js/main.30dc06fd.js"
+    "static/css/main.c702f96e.css",
+    "static/js/main.744534e9.js"
   ]
 }
