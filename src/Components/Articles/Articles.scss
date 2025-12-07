@@ -69,6 +69,11 @@
 }
 
 @media screen and (max-width: 600px) {
+
+    .articles{
+        display: none;
+    }
+
     .articles__list {
         grid-template-columns: 1fr;
         margin: 40px 0;

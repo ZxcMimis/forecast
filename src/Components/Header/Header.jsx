@@ -4,7 +4,7 @@ import { Container } from '../Container/Container';
 import logo from "../../img/logo.png"
 import userImg from "../../img/user.png"
 import React, { useState } from 'react';
-import { Button, Drawer, theme, Modal, message } from 'antd';
+import { Button, Drawer, message, Modal } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 
 export const Header = () => {
@@ -59,7 +59,6 @@ export const Header = () => {
         }
     };
 
-
     const DrawerUserSection = () => {
         if (isLoggedIn && currentUser) {
             return (
@@ -72,9 +71,6 @@ export const Header = () => {
         }
         return (
             <div className="header__user menu">
-                <div className="header__user-avatar-placeholder">
-                    <img src={userImg} alt="User" />
-                </div>
                 <button
                     className="header__sign-up-button menu"
                     onClick={() => { onClose(); showModal(); }}
@@ -85,21 +81,19 @@ export const Header = () => {
         );
     };
 
-
     const DesktopUserSection = () => {
         if (isLoggedIn && currentUser) {
             return (
                 <div className="header__user">
-                    <span style={{ fontWeight: 'bold', marginRight: '10px' }}>{currentUser.username}</span>
-                    <span onClick={handleLogout} style={{ fontSize: '12px', color: '#ff4d4f', cursor: 'pointer', textDecoration: 'underline' }}>Log out</span>
-                    <img src={userImg} alt="User" />
+                    <span className="header__user-name-desktop">{currentUser.username}</span>
+                    <span onClick={handleLogout} className="header__user-logout-desktop">Log out</span>
+                    <img src={userImg} alt="User" className="header__user-avatar-desktop" />
                 </div>
             );
         }
         return (
             <div className="header__user">
                 <button className="header__sign-up-button" onClick={showModal}>Sign Up</button>
-                <img src={userImg} alt="User" />
             </div>
         );
     };
@@ -122,7 +116,7 @@ export const Header = () => {
 
                     <DesktopUserSection />
 
-<div className='header__menu-box'>
+                    <div className='header__menu-box'>
                         <Button type="text" onClick={showDrawer} style={{ fontSize: '16px', fontWeight: '500' }}>
                             Menu {open ? 'v' : '>'}
                         </Button>
@@ -135,8 +129,7 @@ export const Header = () => {
                             open={open}
                             height="auto"
                             className="header__drawer"
-                        > 
-
+                        >
                             <div className="header__drawer-content">
                                 <ul className='header__menu-list menu'>
                                     <li className="header__menu-item"><a href="#" className="header__menu-link">Who we are</a></li>
@@ -144,9 +137,7 @@ export const Header = () => {
                                     <li className="header__menu-item"><a href="#" className="header__menu-link">Menu</a></li>
                                 </ul>
 
-
-                                <DrawerUserSection /> 
-
+                                <DrawerUserSection />
                             </div>
                         </Drawer>
                     </div>

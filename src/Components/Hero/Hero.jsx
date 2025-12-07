@@ -18,7 +18,7 @@ export const Hero = () => {
                     </div>
                 </div>
                 <div class="hero__search-container">
-                    <input class="hero__search-input" type="text" placeholder="Search location.." />
+                    <input class="hero__search-input"  type="text" placeholder="Search location.."  required/>
                     <button class="hero__search-button">
                         <svg class="hero__search-icon">
                             <use href={search}>

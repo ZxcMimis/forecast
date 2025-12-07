@@ -51,6 +51,26 @@
         gap: 15px;
     }
 
+    &__user-avatar-desktop {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__user-name-desktop {
+        font-weight: bold;
+        margin-right: 10px;
+        color: #333;
+    }
+
+    &__user-logout-desktop {
+        font-size: 12px;
+        color: #ff4d4f;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
     &__sign-up-button {
         background-color: #ffb86c;
         color: #fff;
@@ -224,8 +244,6 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-
-
         }
         
         .header__user-avatar-img {
