@@ -5,7 +5,7 @@ import delet from '../../img/delete.svg';
 import heart from '../../img/heart.svg';
 import refresh from '../../img/refresh.svg';
 
-export const Weather = ({ onToggle, activeId }) => {
+export const Weather = ({ onToggle, activeId, newCity }) => {
     const [weatherData, setWeatherData] = useState([]);
     const [refreshingId, setRefreshingId] = useState(null);
     const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
@@ -44,6 +44,18 @@ export const Weather = ({ onToggle, activeId }) => {
 
         fetchAllWeather();
     }, []);
+
+    useEffect(() => {
+        if (newCity) {
+            setWeatherData(prevData => {
+                const isExist = prevData.some(item => item.id === newCity.id);
+                if (!isExist) {
+                    return [newCity, ...prevData];
+                }
+                return prevData;
+            });
+        }
+    }, [newCity]);
 
     const handleRefresh = async (e, id, lat, lon) => {
         e.stopPropagation();

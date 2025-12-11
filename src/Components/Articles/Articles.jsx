@@ -3,89 +3,87 @@ import './Articles.scss';
 import { Container } from '../Container/Container';
 import placeholderImg from '../../img/one.webp';
 
+
+
 export const Articles = () => {
     const [articles, setArticles] = useState([]);
-    const [afterToken, setAfterToken] = useState(null);
+    const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
 
-    const SUBREDDIT = 'aww'; 
-    const LIMIT = 4; 
+    const API_KEY = 'c8499d68006f42569128d5a127bc8d52';
+    const pageSize = 4;
 
-    const fetchArticles = async (isLoadMore = false) => {
+
+
+    const fetchArticles = async () => {
         setIsLoading(true);
         try {
-            let url = `https://www.reddit.com/r/${SUBREDDIT}/hot.json?limit=${LIMIT}`;
-            
-            if (isLoadMore && afterToken) {
-                url += `&after=${afterToken}`;
-            }
-
-            const response = await fetch(url);
+            const response = await fetch(
+                `https://newsapi.org/v2/everything?q=pets&language=en&page=${page}&pageSize=${pageSize}&apiKey=${API_KEY}`
+            );
             const data = await response.json();
 
-            if (data.data && data.data.children) {
-                setAfterToken(data.data.after);
-
-                const newArticles = data.data.children.map(child => {
-                    const item = child.data;
-                    return {
-                        id: item.id,
-                        title: item.title,
-                        urlToImage: (item.thumbnail && item.thumbnail.startsWith('http')) 
-                                    ? item.thumbnail 
-                                    : null,
-                        url: `https://www.reddit.com${item.permalink}`
-                    };
-                });
-
-                if (isLoadMore) {
-                    setArticles(prevArticles => [...prevArticles, ...newArticles]);
+            if (data.articles) {
+                if (page === 1) {
+                    setArticles(data.articles);
                 } else {
-                    setArticles(newArticles);
+                    setArticles(prevArticles => [...prevArticles, ...data.articles]);
+
                 }
+
             }
+
         } catch (error) {
             console.error(error);
         } finally {
             setIsLoading(false);
+
         }
+
     };
+
+
 
     useEffect(() => {
-        fetchArticles(false);
-    }, []); 
+        fetchArticles();
+    }, [page]);
+
+
 
     const handleLoadMore = () => {
-        fetchArticles(true);
+        setPage(prevPage => prevPage + 1);
     };
+
+
 
     return (
         <section className='articles'>
             <Container>
                 <h1 className='articles__title'>Interacting with our pets</h1>
                 <ul className='articles__list'>
-                    {articles.map((item) => (
-                        <li className="articles__item" key={item.id}>
-                            <a href={item.url} target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: 'inherit'}}>
-                                <img 
-                                    className='articles__img' 
-                                    src={item.urlToImage || placeholderImg} 
-                                    alt={item.title} 
-                                    onError={(e) => {e.target.src = placeholderImg}}
-                                />
-                                <p className='articles__info'>{item.title}</p>
-                            </a>
+                    {articles.map((item, index) => (
+                        <li className="articles__item" key={`${item.url}-${index}`}>
+                            <img
+                                className='articles__img'
+                              src={item.urlToImage || placeholderImg}
+                                alt={item.title}
+                            />
+                            <p className='articles__info'>{item.title}</p>
                         </li>
                     ))}
                 </ul>
-                <button 
-                    className='articles__btn' 
+
+                <button
+                    className='articles__btn'
                     onClick={handleLoadMore}
                     disabled={isLoading}
                 >
                     {isLoading ? 'Loading...' : 'See more'}
                 </button>
             </Container>
+
         </section>
+
     );
+
 };

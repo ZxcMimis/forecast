@@ -1,34 +1,120 @@
+import React, { useState, useEffect } from 'react';
 import './Hero.scss'
 import '../reset/reset.scss'
 import { Container } from '../Container/Container';
-import search from '../../img/search.svg'
+import searchIcon from '../../img/search.svg'
 
-export const Hero = () => {
+export const Hero = ({ onSearch }) => {
+    const [city, setCity] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    
+    const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
+
+    useEffect(() => {
+        const fetchCities = async () => {
+            if (city.length < 3) {
+                setSuggestions([]);
+                return;
+            }
+
+            try {
+                const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`;
+                const res = await fetch(url);
+                const data = await res.json();
+                setSuggestions(data);
+                setShowSuggestions(true);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        const timerId = setTimeout(() => {
+            if (city) fetchCities();
+        }, 500);
+
+        return () => clearTimeout(timerId);
+    }, [city]);
+
+    const handleSearchClick = () => {
+        if (city.trim()) {
+            onSearch(city);
+            setCity('');
+            setSuggestions([]);
+            setShowSuggestions(false);
+        }
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearchClick();
+            setShowSuggestions(false);
+        }
+    }
+
+    const handleSuggestionClick = (suggestion) => {
+        const locationString = suggestion.name;
+        setCity(locationString);
+        onSearch(locationString);
+        setSuggestions([]);
+        setShowSuggestions(false);
+    };
+
+    const handleBlur = () => {
+        setTimeout(() => setShowSuggestions(false), 200);
+    };
+
     return (
-
-        <section class="hero">
+        <section className="hero">
             <Container>
-                <h1 class="hero__title">Weather dashboard</h1>
-                <div class="hero__content">
+                <h1 className="hero__title">Weather dashboard</h1>
+                <div className="hero__content">
                     <p className='hero__context'>Create your personal list of favorite cities and always be aware of the weather.</p>
-                    <div class="hero__divider"></div>
-                    <div class="hero__date">
+                    <div className="hero__divider"></div>
+                    <div className="hero__date">
                         <p className='hero__date-one'>October 2023</p>
                         <p className='hero__date-two'>Friday, 13<sup>th</sup></p>
                     </div>
                 </div>
-                <div class="hero__search-container">
-                    <input class="hero__search-input"  type="text" placeholder="Search location.."  required/>
-                    <button class="hero__search-button">
-                        <svg class="hero__search-icon">
-                            <use href={search}>
+                
+                <div className="hero__search-wrapper">
+                    <div className="hero__search-container">
+                        <input 
+                            className="hero__search-input"  
+                            type="text" 
+                            placeholder="Search location.."  
+                            required
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            onFocus={() => city.length >= 3 && setShowSuggestions(true)}
+                            onBlur={handleBlur}
+                        />
+                        <button className="hero__search-button" onClick={handleSearchClick}>
+                            <svg className="hero__search-icon">
+                                <use href={searchIcon}></use>
+                            </svg>
+                        </button>
+                    </div>
 
-                            </use>
-                        </svg>
-                    </button>
+                    {showSuggestions && suggestions.length > 0 && (
+                        <ul className="hero__suggestions">
+                            {suggestions.map((item, index) => (
+                                <li 
+                                    key={`${item.lat}-${item.lon}-${index}`} 
+                                    className="hero__suggestion-item"
+                                    onClick={() => handleSuggestionClick(item)}
+                                >
+                                    <span className="hero__suggestion-city">{item.name}</span>
+                                    <span className="hero__suggestion-country">
+                                        {item.state ? `${item.state}, ` : ''}{item.country}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
-        </Container>
+            </Container>
         </section>
-
     )
 }

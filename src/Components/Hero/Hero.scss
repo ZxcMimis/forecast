@@ -118,15 +118,13 @@ $border-color: #000000;
         }
     }
 
-    &__search-container {
-        display: flex;
+    &__search-wrapper {
+        position: relative;
         width: 100%;
         max-width: 625px;
-        background-color: transparent;
-        border-radius: 10px;
-        height: 50px;
         margin-left: auto;
         margin-right: auto;
+        z-index: 10;
 
         @media (max-width: 769px) {
             max-width: 500px;
@@ -135,7 +133,18 @@ $border-color: #000000;
         @media (max-width: 420px) {
             max-width: 100%;
             padding: 0 10px;
+            box-sizing: border-box;
         }
+    }
+
+    &__search-container {
+        display: flex;
+        width: 100%;
+        background-color: transparent;
+        border-radius: 10px;
+        height: 50px;
+        position: relative;
+        z-index: 2;
     }
 
     &__search-input {
@@ -147,6 +156,7 @@ $border-color: #000000;
         color: #333;
         background-color: $input-bg-color;
         border-radius: 10px 0 0 10px;
+        font-family: Montserrat, sans-serif;
 
         &::placeholder {
             color: #777;
@@ -157,13 +167,7 @@ $border-color: #000000;
         }
 
         @media (max-width: 769px) {
-            width: 173px;
-            height: 14px;
-            padding: 10px 112px 10px 11px;
-        }
-
-        @media (max-width: 420px) {
-            padding: 10px 70px 10px 11px;
+            padding: 10px 20px;
         }
     }
 
@@ -181,17 +185,65 @@ $border-color: #000000;
         cursor: pointer;
         transition: background 0.3s;
 
-        @media (max-width: 769px) {
-            width: 34px;
-            height: 34px;
+        &:hover {
+            background: darken(rgba(255, 179, 108, 1), 10%);
         }
 
-
+        @media (max-width: 769px) {
+            width: 50px;
+        }
     }
 
     &__search-icon {
         width: 25px;
         height: 25px;
         fill: black;
+    }
+
+    &__suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        list-style: none;
+        padding: 0;
+        margin: 5px 0 0 0;
+        z-index: 100;
+        overflow: hidden;
+        text-align: left;
+    }
+
+    &__suggestion-item {
+        padding: 12px 20px;
+        color: #333;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        transition: background 0.2s;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: #f5f5f5;
+        }
+    }
+
+    &__suggestion-city {
+        font-weight: 600;
+        font-family: Montserrat, sans-serif;
+        font-size: 16px;
+    }
+
+    &__suggestion-country {
+        font-size: 14px;
+        color: #888;
+        font-family: Montserrat, sans-serif;
     }
 }
