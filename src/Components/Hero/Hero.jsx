@@ -8,8 +8,32 @@ export const Hero = ({ onSearch }) => {
     const [city, setCity] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [currentDate, setCurrentDate] = useState(new Date());
     
     const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
+
+    useEffect(() => {
+        const timerId = setInterval(() => {
+            setCurrentDate(new Date());
+        }, 60000);
+
+        return () => clearInterval(timerId);
+    }, []);
+
+    const getOrdinalSuffix = (day) => {
+        if (day > 3 && day < 21) return 'th';
+        switch (day % 10) {
+            case 1:  return "st";
+            case 2:  return "nd";
+            case 3:  return "rd";
+            default: return "th";
+        }
+    };
+
+    const monthYear = currentDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    const dayName = currentDate.toLocaleString('en-US', { weekday: 'long' });
+    const dayNumber = currentDate.getDate();
+    const daySuffix = getOrdinalSuffix(dayNumber);
 
     useEffect(() => {
         const fetchCities = async () => {
@@ -72,8 +96,10 @@ export const Hero = ({ onSearch }) => {
                     <p className='hero__context'>Create your personal list of favorite cities and always be aware of the weather.</p>
                     <div className="hero__divider"></div>
                     <div className="hero__date">
-                        <p className='hero__date-one'>October 2023</p>
-                        <p className='hero__date-two'>Friday, 13<sup>th</sup></p>
+                        <p className='hero__date-one'>{monthYear}</p>
+                        <p className='hero__date-two'>
+                            {dayName}, {dayNumber}<sup>{daySuffix}</sup>
+                        </p>
                     </div>
                 </div>
                 
