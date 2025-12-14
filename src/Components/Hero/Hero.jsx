@@ -9,6 +9,7 @@ export const Hero = ({ onSearch }) => {
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
+    const [error, setError] = useState('');
     
     const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
 
@@ -61,11 +62,17 @@ export const Hero = ({ onSearch }) => {
     }, [city]);
 
     const handleSearchClick = () => {
+        if (!city.trim()) {
+            setError('Please enter a city name');
+            return;
+        }
+
         if (city.trim()) {
             onSearch(city);
             setCity('');
             setSuggestions([]);
             setShowSuggestions(false);
+            setError('');
         }
     }
 
@@ -82,10 +89,16 @@ export const Hero = ({ onSearch }) => {
         onSearch(locationString);
         setSuggestions([]);
         setShowSuggestions(false);
+        setError('');
     };
 
     const handleBlur = () => {
         setTimeout(() => setShowSuggestions(false), 200);
+    };
+
+    const handleInputChange = (e) => {
+        setCity(e.target.value);
+        if (error) setError('');
     };
 
     return (
@@ -104,14 +117,13 @@ export const Hero = ({ onSearch }) => {
                 </div>
                 
                 <div className="hero__search-wrapper">
-                    <div className="hero__search-container">
+                    <div className={`hero__search-container ${error ? 'hero__search-container--error' : ''}`}>
                         <input 
                             className="hero__search-input"  
                             type="text" 
                             placeholder="Search location.."  
-                            required
                             value={city}
-                            onChange={(e) => setCity(e.target.value)}
+                            onChange={handleInputChange}
                             onKeyDown={handleKeyDown}
                             onFocus={() => city.length >= 3 && setShowSuggestions(true)}
                             onBlur={handleBlur}
@@ -122,6 +134,8 @@ export const Hero = ({ onSearch }) => {
                             </svg>
                         </button>
                     </div>
+
+                    {error && <span className="hero__error-message">{error}</span>}
 
                     {showSuggestions && suggestions.length > 0 && (
                         <ul className="hero__suggestions">

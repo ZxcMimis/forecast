@@ -1,17 +1,17 @@
+import React, { useState } from 'react';
 import './Header.scss';
 import '../reset/reset.scss'
 import { Container } from '../Container/Container';
 import logo from "../../img/logo.png"
 import userImg from "../../img/user.png"
-import React, { useState } from 'react';
 import { Button, Drawer, message, Modal } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 
-export const Header = () => {
+export const Header = ({ isRegistered, user, onAuthSuccess, onLogout }) => {
     const [open, setOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [currentUser, setCurrentUser] = useState(null);
+    const [authMode, setAuthMode] = useState('signup');
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -28,10 +28,31 @@ export const Header = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-        setCurrentUser(null);
+    const handleLogoutClick = () => {
+        onLogout();
         message.info('You have logged out.');
+    };
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('https://69219d19512fb4140be0c524.mockapi.io/users');
+            const users = await response.json();
+            
+            const foundUser = users.find(u => u.email === formData.email && u.password === formData.password);
+
+            if (foundUser) {
+                message.success('Welcome back!');
+                onAuthSuccess(foundUser);
+                setIsModalOpen(false);
+                setFormData({ username: '', email: '', password: '' });
+            } else {
+                message.error('Invalid email or password');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            message.error('Server error.');
+        }
     };
 
     const handleRegister = async (e) => {
@@ -46,8 +67,7 @@ export const Header = () => {
             if (response.ok) {
                 const data = await response.json();
                 message.success('Account created successfully!');
-                setIsLoggedIn(true);
-                setCurrentUser(data);
+                onAuthSuccess(data);
                 setIsModalOpen(false);
                 setFormData({ username: '', email: '', password: '' });
             } else {
@@ -59,13 +79,18 @@ export const Header = () => {
         }
     };
 
+    const toggleAuthMode = (e) => {
+        e.preventDefault();
+        setAuthMode(authMode === 'signup' ? 'login' : 'signup');
+    };
+
     const DrawerUserSection = () => {
-        if (isLoggedIn && currentUser) {
+        if (isRegistered && user) {
             return (
                 <div className="header__user menu">
                     <img src={userImg} alt="User" className="header__user-avatar-img" />
-                    <span className="header__user-name">{currentUser.username}</span>
-                    <span onClick={handleLogout} className="header__user-logout">Log out</span>
+                    <span className="header__user-name">{user.username || user.name}</span>
+                    <span onClick={handleLogoutClick} className="header__user-logout">Log out</span>
                 </div>
             );
         }
@@ -75,18 +100,18 @@ export const Header = () => {
                     className="header__sign-up-button menu"
                     onClick={() => { onClose(); showModal(); }}
                 >
-                    Sign Up
+                    Sign In / Up
                 </button>
             </div>
         );
     };
 
     const DesktopUserSection = () => {
-        if (isLoggedIn && currentUser) {
+        if (isRegistered && user) {
             return (
                 <div className="header__user">
-                    <span className="header__user-name-desktop">{currentUser.username}</span>
-                    <span onClick={handleLogout} className="header__user-logout-desktop">Log out</span>
+                    <span className="header__user-name-desktop">{user.username || user.name}</span>
+                    <span onClick={handleLogoutClick} className="header__user-logout-desktop">Log out</span>
                     <img src={userImg} alt="User" className="header__user-avatar-desktop" />
                 </div>
             );
@@ -152,22 +177,38 @@ export const Header = () => {
                 width={450}
                 className="header__modal"
             >
-                <form className="header__modal-form" onSubmit={handleRegister}>
-                    <h2 className="header__modal-title">Sign up</h2>
-                    <div className="header__modal-group">
-                        <label className="header__modal-label">Username</label>
-                        <input type="text" name="username" className="header__modal-input" placeholder="Username" value={formData.username} onChange={handleInputChange} required />
-                    </div>
+                <form className="header__modal-form" onSubmit={authMode === 'signup' ? handleRegister : handleLogin}>
+                    <h2 className="header__modal-title">
+                        {authMode === 'signup' ? 'Sign up' : 'Log In'}
+                    </h2>
+                    
+                    {authMode === 'signup' && (
+                        <div className="header__modal-group">
+                            <label className="header__modal-label">Username</label>
+                            <input type="text" name="username" className="header__modal-input" placeholder="Username" value={formData.username} onChange={handleInputChange} required />
+                        </div>
+                    )}
+                    
                     <div className="header__modal-group">
                         <label className="header__modal-label">E-Mail</label>
                         <input type="email" name="email" className="header__modal-input" placeholder="E-Mail" value={formData.email} onChange={handleInputChange} required />
                     </div>
+                    
                     <div className="header__modal-group">
                         <label className="header__modal-label">Password</label>
                         <input type="password" name="password" className="header__modal-input" placeholder="Password" value={formData.password} onChange={handleInputChange} required />
                     </div>
-                    <button type="submit" className="header__modal-btn">Sign up</button>
-                    <p className="header__modal-footer">Already have an account? <a className='header__modal-footer-a' href="#">Log In</a></p>
+                    
+                    <button type="submit" className="header__modal-btn">
+                        {authMode === 'signup' ? 'Sign up' : 'Log In'}
+                    </button>
+                    
+                    <p className="header__modal-footer">
+                        {authMode === 'signup' ? 'Already have an account? ' : 'Don\'t have an account? '}
+                        <a className='header__modal-footer-a' href="#" onClick={toggleAuthMode}>
+                            {authMode === 'signup' ? 'Log In' : 'Sign Up'}
+                        </a>
+                    </p>
                 </form>
             </Modal>
         </header>

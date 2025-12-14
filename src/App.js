@@ -14,7 +14,20 @@ import { Footer } from './Components/Footer/Footer';
 const App = () => {
   const [selectedWeather, setSelectedWeather] = useState(null);
   const [newCity, setNewCity] = useState(null);
+  const [isUserRegistered, setIsUserRegistered] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  
   const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
+
+  const handleAuthSuccess = (user) => {
+    setIsUserRegistered(true);
+    setCurrentUser(user);
+  };
+
+  const handleLogout = () => {
+    setIsUserRegistered(false);
+    setCurrentUser(null);
+  };
 
   const handleSearch = async (city) => {
     try {
@@ -48,13 +61,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header />
+      <Header 
+        isRegistered={isUserRegistered} 
+        user={currentUser}
+        onAuthSuccess={handleAuthSuccess}
+        onLogout={handleLogout}
+      />
+      
       <Hero onSearch={handleSearch} />
       
       <Weather 
         onToggle={handleToggleDetails} 
         activeId={selectedWeather ? selectedWeather.id : null} 
         newCity={newCity}
+        isUserRegistered={isUserRegistered}
       />
 
       {selectedWeather && (

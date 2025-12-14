@@ -5,7 +5,7 @@ import delet from '../../img/delete.svg';
 import heart from '../../img/heart.svg';
 import refresh from '../../img/refresh.svg';
 
-export const Weather = ({ onToggle, activeId, newCity }) => {
+export const Weather = ({ onToggle, activeId, newCity, isUserRegistered }) => {
     const [weatherData, setWeatherData] = useState([]);
     const [refreshingId, setRefreshingId] = useState(null);
     const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
@@ -99,6 +99,14 @@ export const Weather = ({ onToggle, activeId, newCity }) => {
         setWeatherData(prevData => prevData.filter(item => item.id !== id));
     };
 
+    const handleSeeMoreClick = (data) => {
+        if (!isUserRegistered) {
+            alert("This function is available only for registered users!");
+            return;
+        }
+        onToggle(data);
+    };
+
     if (weatherData.length === 0) {
         return (
             <section className="weather">
@@ -181,7 +189,13 @@ export const Weather = ({ onToggle, activeId, newCity }) => {
 
                                 <button
                                     className="weather__btn"
-                                    onClick={() => onToggle(data)}
+                                    onClick={() => handleSeeMoreClick(data)}
+                                    style={{
+                                        opacity: isUserRegistered ? 1 : 0.6,
+                                        cursor: isUserRegistered ? 'pointer' : 'not-allowed',
+                                        background: isUserRegistered ? '' : '#ccc'
+                                    }}
+                                    title={!isUserRegistered ? "Please login to see details" : ""}
                                 >
                                     {activeId === data.id ? 'Hide info' : 'See more'}
                                 </button>

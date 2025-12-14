@@ -150,6 +150,11 @@ $border-color: #000000;
         height: 50px;
         position: relative;
         z-index: 2;
+
+        &--error {
+            border: 1px solid #ff4d4f;
+            box-shadow: 0 0 5px rgba(255, 77, 79, 0.5);
+        }
     }
 
     &__search-input {
@@ -260,4 +265,21 @@ $border-color: #000000;
         color: #888;
         font-family: Montserrat, sans-serif;
     }
+
+    &__error-message {
+        position: absolute;
+        bottom: -25px;
+        left: 0;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 500;
+        animation: fadeIn 0.3s ease-in-out;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+
+        @media (max-width: 420px) {
+            font-size: 12px;
+            bottom: -20px;
+        }
+    }
 }
+
