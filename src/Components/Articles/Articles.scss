@@ -66,21 +66,7 @@
     .articles__list {
         grid-template-columns: repeat(2, 1fr);
     }
-}
-
-@media screen and (max-width: 600px) {
-
-    .articles{
+        .articles{
         display: none;
-    }
-
-    .articles__list {
-        grid-template-columns: 1fr;
-        margin: 40px 0;
-    }
-    
-    .articles__title,
-    .articles__btn {
-        margin-left: 0;
     }
 }

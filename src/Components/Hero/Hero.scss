@@ -127,13 +127,18 @@ $border-color: #000000;
         z-index: 10;
 
         @media (max-width: 769px) {
-            max-width: 500px;
+            max-width: 450px; 
+            padding: 0 15px; 
         }
 
         @media (max-width: 420px) {
-            max-width: 100%;
-            padding: 0 10px;
+            max-width: 90%; 
+            padding: 0;
             box-sizing: border-box;
+        }
+        
+        @media (max-width: 320px) {
+            max-width: 95%; 
         }
     }
 
@@ -167,7 +172,12 @@ $border-color: #000000;
         }
 
         @media (max-width: 769px) {
-            padding: 10px 20px;
+            padding: 0 20px; 
+        }
+        
+        @media (max-width: 420px) {
+            padding: 0 15px; 
+            font-size: 0.9rem;
         }
     }
 
@@ -191,6 +201,10 @@ $border-color: #000000;
 
         @media (max-width: 769px) {
             width: 50px;
+        }
+        
+        @media (max-width: 420px) {
+            width: 50px; 
         }
     }
 
