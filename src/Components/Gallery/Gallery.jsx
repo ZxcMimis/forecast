@@ -1,10 +1,12 @@
 import React from 'react';
 import './Gallery.scss';
 import { Container } from '../Container/Container';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
 
 import sliderOne from '../../img/slider-1.webp';
 import sliderTwo from '../../img/slider-2.webp';
@@ -21,10 +23,19 @@ export const Gallery = () => {
                 <h1 className='gallery__title'>Beautiful nature</h1>
                 
                 <Swiper
-                    modules={[Pagination, Autoplay]}
-                    spaceBetween={20}
-                    slidesPerView={1}
+                    modules={[Pagination, Autoplay, EffectCoverflow]}
+                    effect={'coverflow'}
+                    grabCursor={true}
+                    centeredSlides={true}
+                    slidesPerView={'auto'}
                     loop={true}
+                    coverflowEffect={{
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 1,
+                        slideShadows: false,
+                    }}
                     autoplay={{
                         delay: 3000,
                         disableOnInteraction: false,

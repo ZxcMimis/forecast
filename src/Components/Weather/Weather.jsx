@@ -5,11 +5,15 @@ import delet from '../../img/delete.svg';
 import refresh from '../../img/refresh.svg';
 
 export const Weather = ({ onToggle, activeId, newCity, isUserRegistered, onOpenAuthModal }) => {
-    const [weatherData, setWeatherData] = useState([]);
+    const [weatherData, setWeatherData] = useState(() => {
+        const saved = localStorage.getItem('weather_dashboard_data');
+        return saved ? JSON.parse(saved) : [];
+    });
+
     const [refreshingId, setRefreshingId] = useState(null);
     const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
 
-    const locations = [
+    const defaultLocations = [
         { lat: 50.0755, lon: 14.4378 },
         { lat: 50.4501, lon: 30.5234 },
         { lat: 51.5074, lon: -0.1278 }
@@ -21,9 +25,16 @@ export const Weather = ({ onToggle, activeId, newCity, isUserRegistered, onOpenA
     };
 
     useEffect(() => {
-        const fetchAllWeather = async () => {
+        const likedCities = weatherData.filter(item => item.liked);
+        localStorage.setItem('weather_dashboard_data', JSON.stringify(likedCities));
+    }, [weatherData]);
+
+    useEffect(() => {
+        const fetchInitialWeather = async () => {
+            if (weatherData.length > 0) return;
+
             try {
-                const promises = locations.map(async loc => {
+                const promises = defaultLocations.map(async loc => {
                     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${loc.lon}&appid=${API_KEY}&units=metric`;
                     const res = await fetch(url);
                     const data = await res.json();
@@ -36,7 +47,7 @@ export const Weather = ({ onToggle, activeId, newCity, isUserRegistered, onOpenA
                 console.error(error);
             }
         };
-        fetchAllWeather();
+        fetchInitialWeather();
     }, []);
 
     useEffect(() => {
@@ -57,7 +68,7 @@ export const Weather = ({ onToggle, activeId, newCity, isUserRegistered, onOpenA
             const res = await fetch(url);
             const newData = await res.json();
             if (res.ok) {
-                setWeatherData(prevData => prevData.map(item => 
+                setWeatherData(prevData => prevData.map(item =>
                     item.id === id ? { ...newData, liked: item.liked } : item
                 ));
             }
@@ -70,7 +81,7 @@ export const Weather = ({ onToggle, activeId, newCity, isUserRegistered, onOpenA
 
     const handleLike = (e, id) => {
         e.stopPropagation();
-        setWeatherData(prevData => prevData.map(item => 
+        setWeatherData(prevData => prevData.map(item =>
             item.id === id ? { ...item, liked: !item.liked } : item
         ));
     };

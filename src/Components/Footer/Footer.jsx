@@ -30,13 +30,13 @@ export const Footer = () => {
                 <div className="footer__link-box">
                     <h2 className="footer__link-title">Contact us</h2>
                     <div className="footer__social-icons">
-                    <a href="https://www.instagram.com/go_iteens/" className="footer__inst">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/go_iteens/" className="footer__inst">
                         <img className='footer__inst-link' src={insta} alt='#'></img>
                     </a>
-                    <a href="https://www.facebook.com/GoITeens/?locale=ru_RU" className="footer__facebook">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/GoITeens/?locale=ru_RU" className="footer__facebook">
                         <img className='footer__facebook-link' src={facebook} alt='#'></img>
                     </a>
-                    <a href="https://www.whatsapp.com/?lang=ru" className="footer__whatsapp">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.whatsapp.com/?lang=ru" className="footer__whatsapp">
                         <img className='footer__whatsapp-link' src={whatsapp} alt='#'></img>
                     </a>
                     </div>
