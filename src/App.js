@@ -16,12 +16,14 @@ const App = () => {
   const [newCity, setNewCity] = useState(null);
   const [isUserRegistered, setIsUserRegistered] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   
   const API_KEY = 'de23728e3ff5679e965e8d6066a30a47';
 
   const handleAuthSuccess = (user) => {
     setIsUserRegistered(true);
     setCurrentUser(user);
+    setIsAuthModalOpen(false);
   };
 
   const handleLogout = () => {
@@ -66,6 +68,8 @@ const App = () => {
         user={currentUser}
         onAuthSuccess={handleAuthSuccess}
         onLogout={handleLogout}
+        isModalOpen={isAuthModalOpen}
+        setIsModalOpen={setIsAuthModalOpen}
       />
       
       <Hero onSearch={handleSearch} />
@@ -75,6 +79,7 @@ const App = () => {
         activeId={selectedWeather ? selectedWeather.id : null} 
         newCity={newCity}
         isUserRegistered={isUserRegistered}
+        onOpenAuthModal={() => setIsAuthModalOpen(true)}
       />
 
       {selectedWeather && (
