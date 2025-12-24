@@ -78,8 +78,6 @@ const App = () => {
         onToggle={handleToggleDetails} 
         activeId={selectedWeather ? selectedWeather.id : null} 
         newCity={newCity}
-        isUserRegistered={isUserRegistered}
-        onOpenAuthModal={() => setIsAuthModalOpen(true)}
       />
 
       {selectedWeather && (
@@ -91,7 +89,7 @@ const App = () => {
       )}
 
       <Articles />
-      <Gallery />
+      {/* <Gallery /> */}
       <Footer />
     </div>
   );

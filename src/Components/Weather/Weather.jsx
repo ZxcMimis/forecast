@@ -4,7 +4,7 @@ import { Container } from '../Container/Container';
 import delet from '../../img/delete.svg';
 import refresh from '../../img/refresh.svg';
 
-export const Weather = ({ onToggle, activeId, newCity, isUserRegistered, onOpenAuthModal }) => {
+export const Weather = ({ onToggle, activeId, newCity }) => {
     const [weatherData, setWeatherData] = useState(() => {
         const saved = localStorage.getItem('weather_dashboard_data');
         return saved ? JSON.parse(saved) : [];
@@ -92,14 +92,6 @@ export const Weather = ({ onToggle, activeId, newCity, isUserRegistered, onOpenA
         setWeatherData(prevData => prevData.filter(item => item.id !== id));
     };
 
-    const handleSeeMoreClick = (data) => {
-        if (!isUserRegistered) {
-            onOpenAuthModal();
-        } else {
-            onToggle(data);
-        }
-    };
-
     if (weatherData.length === 0) {
         return (
             <section className="weather">
@@ -157,7 +149,7 @@ export const Weather = ({ onToggle, activeId, newCity, isUserRegistered, onOpenA
                                         </svg>
                                     </button>
                                 </div>
-                                <button className="weather__btn" onClick={() => handleSeeMoreClick(data)} style={{ opacity: isUserRegistered ? 1 : 0.8, cursor: 'pointer' }}>
+                                <button className="weather__btn" onClick={() => onToggle(data)}>
                                     {activeId === data.id ? 'Hide info' : 'See more'}
                                 </button>
                                 <button className="weather__icon-btn" onClick={(e) => handleDelete(e, data.id)}>
